@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Project Advisor</title>
+  <meta name="description" content="Your Project Advisor helps organizations deliver complex projects, streamline operations, and support successful implementations." />
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #5b6472;
+      --line: #e5e7eb;
+      --accent: #1f4b99;
+      --accent-dark: #17386f;
+      --soft: #eef4ff;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 247, 245, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero {
+      padding: 84px 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: var(--soft);
+      color: var(--accent);
+      border: 1px solid #d9e6ff;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 4.4rem);
+      line-height: 1.05;
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); }
+
+    .btn-secondary {
+      border-color: var(--line);
+      background: white;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover { border-color: #cfd5dd; }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .point {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .point strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f4f7fc 100%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 16px;
+      font-size: 1.25rem;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .checklist li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    section {
+      padding: 28px 0 72px;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+      max-width: 700px;
+    }
+
+    .section-heading h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .about-panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-panel p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .bullets {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .cta {
+      padding-bottom: 90px;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #1f4b99 0%, #17386f 100%);
+      color: white;
+      border-radius: 28px;
+      padding: 36px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .cta-box p {
+      color: rgba(255,255,255,0.86);
+      margin: 10px 0 0;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .contact-card p {
+      margin: 0 0 10px;
+      color: white;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .cards,
+      .about-grid,
+      .cta-box,
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">Your Project Advisor</a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Project Delivery • Implementation • Operations</span>
+          <h1>Helping teams deliver complex work with clarity and confidence.</h1>
+          <p>
+            Your Project Advisor partners with organizations to manage initiatives, improve execution,
+            and create the structure needed to move projects from planning to results.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Book a Consultation</a>
+            <a class="btn btn-secondary" href="#services">View Services</a>
+          </div>
+          <div class="hero-points">
+            <div class="point">
+              <strong>Cross-functional</strong>
+              <span>Support across teams, stakeholders, and vendors.</span>
+            </div>
+            <div class="point">
+              <strong>Execution-focused</strong>
+              <span>Clear plans, aligned owners, and stronger delivery.</span>
+            </div>
+            <div class="point">
+              <strong>Flexible support</strong>
+              <span>Advisory, hands-on delivery, or ongoing project support.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <h3>How I can help</h3>
+          <ul class="checklist">
+            <li>Project and program management for high-priority initiatives</li>
+            <li>Implementation support for systems, tools, and process changes</li>
+            <li>Operational planning, workflow design, and stakeholder coordination</li>
+            <li>Training, enablement, and execution support for growing teams</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <h2>Services</h2>
+          <p>
+            Practical support for businesses that need structure, momentum, and reliable follow-through.
+          </p>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <h3>Project & Program Management</h3>
+            <p>
+              End-to-end planning, timeline management, risk tracking, and stakeholder communication to keep initiatives on track.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Implementation Management</h3>
+            <p>
+              Support for launches, rollouts, and cross-functional implementations with a focus on readiness, adoption, and delivery.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Operations & Enablement</h3>
+            <p>
+              Process improvement, documentation, training coordination, and day-to-day operational support that helps teams scale.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <h2>About</h2>
+          <p>
+            A collaborative, detail-driven partner for organizations navigating growth, change, and complex execution.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div class="about-panel">
+            <p>
+              I help businesses bring order to moving parts, align teams around priorities, and create a smoother path from idea to execution.
+            </p>
+            <p>
+              Whether you need hands-on project delivery, implementation support, or operational structure, I bring a practical approach focused on progress and follow-through.
+            </p>
+          </div>
+          <div class="about-panel">
+            <ul class="bullets">
+              <li>Cross-functional coordination across internal teams and external partners</li>
+              <li>Clear project planning, status communication, and issue resolution</li>
+              <li>Adaptable support for startups, growing businesses, and established teams</li>
+              <li>Strong attention to process, communication, and client experience</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Let’s talk about your next project.</h2>
+            <p>
+              Whether you need help organizing a complex initiative, supporting an implementation, or improving operations, I’d love to connect.
+            </p>
+          </div>
+          <div class="contact-card">
+            <p><strong>Email:</strong> yourprojectadvisor@gmail.com</p>
+            <p><strong>Location:</strong> Miami, Florida</p>
+            <p><strong>Availability:</strong> Consulting, freelance, and project-based support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Your Project Advisor. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>
