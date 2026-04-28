@@ -60,9 +60,28 @@
     }
 
     .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      font-size: 1.8rem;
       font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.2px;
+      letter-spacing: -0.02em;
+      color: #0f2a4a;
+    }
+
+    .logo-divider {
+      width: 1px;
+      height: 22px;
+      background: #d1d5db;
+    }
+
+    .logo-text {
+      font-size: 0.95rem;
+      color: #374151;
+      text-transform: lowercase;
     }
 
     .nav-links {
@@ -347,7 +366,11 @@
 <body>
   <header class="topbar">
     <div class="container nav">
-      <a href="#home" class="brand">Your Project Advisor</a>
+      <div class="brand">
+  <span class="logo-mark">ypa</span>
+  <span class="logo-divider"></span>
+  <span class="logo-text">your project advisor</span>
+</div>
       <nav class="nav-links">
         <a href="#services">Services</a>
         <a href="#about">About</a>
