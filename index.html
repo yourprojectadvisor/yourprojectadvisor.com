@@ -76,11 +76,14 @@
 
     .hero {
       padding: 84px 0 64px;
+      background:
+        radial-gradient(circle at 82% 22%, rgba(31, 75, 153, 0.12) 0%, rgba(31, 75, 153, 0.04) 32%, transparent 58%),
+        linear-gradient(135deg, #ffffff 0%, #f7f7f5 45%, #eef4ff 100%);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 32px;
       align-items: center;
     }
@@ -167,11 +170,29 @@
     }
 
     .hero-card {
-      background: linear-gradient(180deg, #ffffff 0%, #f4f7fc 100%);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: 28px;
+      padding: 30px;
       box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(31,75,153,0.08), transparent 45%),
+        radial-gradient(circle at top right, rgba(31,75,153,0.12), transparent 38%);
+      pointer-events: none;
+    }
+
+    .hero-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-card h3 {
@@ -447,7 +468,7 @@
             </p>
           </div>
           <div class="contact-card">
-            <p><strong>Email:</strong> yourprojectadvisor@gmail.com</p>
+            <p><strong>Email:</strong> your@email.com</p>
             <p><strong>Location:</strong> Miami, Florida</p>
             <p><strong>Availability:</strong> Consulting, freelance, and project-based support</p>
           </div>
