@@ -47,7 +47,7 @@
     }
 
     .nav {
-      min-height: 104px;
+      min-height: 118px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -63,9 +63,10 @@
     }
 
     .logo-img {
-      height: 56px;
+      height: 96px;
       width: auto;
       display: block;
+      object-fit: contain;
     }
 
     .logo-divider {
@@ -87,10 +88,11 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 44px;
+      gap: 56px;
       color: var(--navy);
-      font-size: 1rem;
+      font-size: 1.15rem;
       text-transform: lowercase;
+      margin-left: auto;
     }
 
     .nav-links a {
@@ -349,6 +351,10 @@
     }
 
     @media (max-width: 640px) {
+      .logo-img {
+        height: 62px;
+      }
+
       .nav { align-items: flex-start; }
       .brand { gap: 12px; }
       .logo-mark { font-size: 3rem; }
