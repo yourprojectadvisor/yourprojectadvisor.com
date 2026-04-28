@@ -60,28 +60,41 @@
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      color: #0b2343;
     }
 
     .logo-mark {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: #0f2a4a;
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      color: #0b2343;
+      font-family: Inter, Arial, Helvetica, sans-serif;
     }
 
     .logo-divider {
       width: 1px;
-      height: 22px;
-      background: #d1d5db;
+      height: 34px;
+      background: #c9a14a;
+      transform: translateY(1px);
     }
 
     .logo-text {
-      font-size: 0.95rem;
-      color: #374151;
+      display: block;
+      font-size: 1.03rem;
+      font-weight: 650;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: #0b2343;
       text-transform: lowercase;
+      white-space: nowrap;
+    }
+
+    .logo-text span {
+      display: block;
     }
 
     .nav-links {
@@ -330,9 +343,62 @@
       padding: 22px;
     }
 
-    .contact-card p {
-      margin: 0 0 10px;
-      color: white;
+    .lead-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lead-form label {
+      display: grid;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .lead-form input,
+    .lead-form textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 12px;
+      padding: 12px 13px;
+      font: inherit;
+      color: #0b2343;
+      background: rgba(255,255,255,0.96);
+      outline: none;
+    }
+
+    .lead-form textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .lead-form input:focus,
+    .lead-form textarea:focus {
+      border-color: #c9a14a;
+      box-shadow: 0 0 0 3px rgba(201, 161, 74, 0.22);
+    }
+
+    .form-submit {
+      margin-top: 4px;
+      cursor: pointer;
+      background: #c9a14a;
+      color: #0b2343;
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-weight: 750;
+      font-size: 0.98rem;
+    }
+
+    .form-submit:hover {
+      background: #d5af5b;
+    }
+
+    .form-note {
+      margin: 8px 0 0;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.74);
     }
 
     footer {
@@ -369,7 +435,7 @@
       <div class="brand">
   <span class="logo-mark">ypa</span>
   <span class="logo-divider"></span>
-  <span class="logo-text">your project advisor</span>
+  <span class="logo-text"><span>your project</span><span>advisor</span></span>
 </div>
       <nav class="nav-links">
         <a href="#services">Services</a>
@@ -491,9 +557,22 @@
             </p>
           </div>
           <div class="contact-card">
-            <p><strong>Email:</strong> your@email.com</p>
-            <p><strong>Location:</strong> Miami, Florida</p>
-            <p><strong>Availability:</strong> Consulting, freelance, and project-based support</p>
+            <form class="lead-form" action="https://formspree.io/f/mrerwark" method="POST">
+              <label>
+                Name
+                <input type="text" name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                Email
+                <input type="email" name="email" placeholder="you@example.com" required />
+              </label>
+              <label>
+                How can I help?
+                <textarea name="message" placeholder="Tell me a little about your project or business need." required></textarea>
+              </label>
+              <button class="form-submit" type="submit">Send inquiry</button>
+              <p class="form-note">Replace the form link with your Formspree endpoint before publishing.</p>
+            </form>
           </div>
         </div>
       </div>
