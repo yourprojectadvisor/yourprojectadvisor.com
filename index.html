@@ -62,12 +62,10 @@
       flex-shrink: 0;
     }
 
-    .logo-mark {
-      font-size: clamp(3.2rem, 5vw, 5rem);
-      font-weight: 850;
-      line-height: 0.82;
-      letter-spacing: -0.09em;
-      color: var(--navy);
+    .logo-img {
+      height: 56px;
+      width: auto;
+      display: block;
     }
 
     .logo-divider {
@@ -370,9 +368,7 @@
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="#home" aria-label="Your Project Advisor home">
-        <span class="logo-mark">ypa</span>
-        <span class="logo-divider"></span>
-        <span class="logo-text">your project advisor</span>
+        <img src="logo.png" alt="ypa logo" class="logo-img" />
       </a>
 
       <nav class="nav-links" aria-label="Primary navigation">
